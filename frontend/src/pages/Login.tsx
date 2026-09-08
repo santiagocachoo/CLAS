@@ -82,6 +82,27 @@ export default function Login() {
                 Iniciar Sesión
               </button>
 
+              <div className='mt-3 bg-gray-50 border border-gray-200 rounded-lg p-3'>
+                <p className='text-xs font-medium text-gray-500 mb-2'>Credenciales de demostración</p>
+                <div className='space-y-1.5'>
+                  <button
+                    type='button'
+                    onClick={() => { setEmail('admin@horizonteci-demo.com'); setPassword('empresa123'); }}
+                    className='w-full text-left px-2.5 py-1.5 rounded-md bg-white border border-gray-200 hover:border-gray-300 transition-colors'>
+                    <p className='text-xs font-medium text-gray-600'>Admin Empresa</p>
+                    <p className='text-[11px] text-gray-400'>admin@horizonteci-demo.com / empresa123</p>
+                  </button>
+                  <button
+                    type='button'
+                    onClick={() => { setEmail('usuario@meridianmotors-demo.com'); setPassword('usuario123'); }}
+                    className='w-full text-left px-2.5 py-1.5 rounded-md bg-white border border-gray-200 hover:border-gray-300 transition-colors'>
+                    <p className='text-xs font-medium text-gray-600'>Usuario Empresa</p>
+                    <p className='text-[11px] text-gray-400'>usuario@meridianmotors-demo.com / usuario123</p>
+                  </button>
+                </div>
+                <p className='text-[11px] text-gray-400 mt-2'>Cada rol tiene un nivel de acceso distinto.</p>
+              </div>
+
               <p className='text-center text-xs text-gray-400 mt-3'>
                 ¿No tienes cuenta?{' '}
                 <Link to="/membresias" className="text-blue-500 hover:underline">

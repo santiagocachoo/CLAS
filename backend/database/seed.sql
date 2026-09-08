@@ -1,3 +1,13 @@
+-- Makes this seed idempotent so it can be re-run as a recovery path for the live demo.
+-- WARNING: this wipes all existing data in these tables before reinserting.
+TRUNCATE TABLE
+  empresas, contactos, productos_fabricados, usuarios, membresias,
+  tipos_organizacion, roles, certificaciones, rubros, industrias,
+  necesidades_proveeduria, procesos, funciones_contacto,
+  empresa_certificaciones, empresa_rubros, empresa_industrias,
+  empresa_necesidades, empresa_procesos
+RESTART IDENTITY CASCADE;
+
 -- =========================
 -- CATÁLOGOS
 -- =========================

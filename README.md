@@ -1,6 +1,8 @@
 # CLAS Platform
 
-> **Note:** This branch is a sanitized public portfolio demo of an academic project originally built for a real automotive-industry client. Seed data, company names, contact details, and logos throughout this repo have been replaced with fictional equivalents; no real client or company data is included. Live demo: _link coming soon once deployed_.
+> **Note:** This branch is a sanitized public portfolio demo of an academic project originally built for a real automotive-industry client. Seed data, company names, contact details, and logos throughout this repo have been replaced with fictional equivalents; no real client or company data is included. Live demo: https://company-directory-demo.vercel.app.
+
+**Live demo:** https://company-directory-demo.vercel.app — the backend runs on a free hosting tier, so the first request after a period of inactivity can take up to a minute to respond while it spins back up.
 
 Full-stack company directory and membership platform, originally built as a client proposal for an automotive-industry cluster organization in Sonora, México.
 
@@ -226,11 +228,10 @@ High-level access model:
 
 ### Demo Credentials
 
-The seed data includes one user per role so all three access levels can be exercised in the live demo:
+The seed data includes two company-level accounts published for the public demo. The cluster-wide administrator account also exists in the seed data but is not published here, since it can modify all directory data:
 
 | Role            | Email                             | Password     | Access                                                                                       |
 | --------------- | --------------------------------- | ------------ | -------------------------------------------------------------------------------------------- |
-| Admin Cluster   | `admin@cluster.com`               | `123456`     | Full administrative access across every company, catalog, and user.                          |
 | Admin Empresa   | `admin@horizonteci-demo.com`      | `empresa123` | Scoped to Horizonte Componentes Industriales — manages that company's own profile and users. |
 | Usuario Empresa | `usuario@meridianmotors-demo.com` | `usuario123` | Scoped to Meridian Motors — standard authenticated user access, no admin actions.            |
 
