@@ -4,6 +4,11 @@
 
 **Live demo:** https://company-directory-demo.vercel.app — the backend runs on a free hosting tier, so the first request after a period of inactivity can take up to a minute to respond while it spins back up.
 
+### Scope
+
+- **Implemented:** public company directory with search, filtering, sorting, and pagination; JWT authentication with three role levels; company and contact management; admin panel.
+- **Design concepts, not implemented:** news section, newsletter subscription, self-service password recovery, in-platform membership signup (handled instead as a contact handoff).
+
 Full-stack company directory and membership platform, originally built as a client proposal for an automotive-industry cluster organization in Sonora, México.
 
 This repository contains the public-facing directory, authentication flow, protected administration areas, and the backend API used to manage companies, contacts, memberships, catalogs, and related business data for the automotive cluster.
@@ -187,10 +192,8 @@ Available frontend scripts:
 - `/`
 - `/directorio`
 - `/noticias`
-- `/noticias/:id`
 - `/login`
 - `/empresa/:id`
-- `/contrasena_reset`
 - `/membresias`
 
 ### Protected Frontend Routes

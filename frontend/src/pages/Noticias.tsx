@@ -1,6 +1,5 @@
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import { useNavigate } from 'react-router-dom'
 import newsInvestment from '../assets/img/news-investment.svg'
 import newsPartnership from '../assets/img/news-partnership.svg'
 import newsSummit from '../assets/img/news-summit.svg'
@@ -57,7 +56,6 @@ const noticias = [
 ]
 
 export default function Noticias() {
-  const navigate = useNavigate()
   const destacada = noticias[0]
 
   return (
@@ -65,6 +63,19 @@ export default function Noticias() {
       <Navbar />
 
       <main className="mx-auto max-w-7xl px-6 py-12">
+
+        {/* Aviso de concepto */}
+        <section className="mb-10">
+          <div className="flex items-start gap-3 rounded-xl border border-blue-100 bg-blue-50 px-5 py-4 text-blue-800">
+            <svg className="mt-0.5 h-5 w-5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="9" />
+              <path strokeLinecap="round" d="M12 8h.01M11 12h1v4h1" />
+            </svg>
+            <p className="text-sm leading-relaxed">
+              Esta sección es un concepto de diseño para una posible funcionalidad futura. No formó parte del alcance implementado del proyecto y el contenido mostrado es de relleno (placeholder).
+            </p>
+          </div>
+        </section>
 
         {/* Header */}
         <section className="mb-14">
@@ -78,7 +89,7 @@ export default function Noticias() {
 
         {/* Destacada */}
         <section className="mb-16">
-          <div className="grid md:grid-cols-2 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm hover:shadow-md transition">
+          <div className="grid md:grid-cols-2 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
 
             <img
               src={destacada.imagen}
@@ -104,12 +115,9 @@ export default function Noticias() {
                 <span>{destacada.autor}</span>
               </div>
 
-              <button
-                onClick={() => navigate(`/noticias/${destacada.id}`)}
-                className="bg-[#052440] text-white px-6 py-3 rounded-lg w-fit hover:opacity-90 transition"
-              >
+              <span className="bg-[#052440] text-white px-6 py-3 rounded-lg w-fit cursor-default select-none opacity-90">
                 Leer más →
-              </button>
+              </span>
             </div>
           </div>
         </section>
@@ -124,13 +132,13 @@ export default function Noticias() {
             {noticias.slice(1).map((noticia) => (
               <article
                 key={noticia.id}
-                className="group bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition"
+                className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm"
               >
                 <div className="overflow-hidden">
                   <img
                     src={noticia.imagen}
                     alt={noticia.titulo}
-                    className="h-52 w-full object-cover group-hover:scale-105 transition duration-300"
+                    className="h-52 w-full object-cover"
                   />
                 </div>
 
@@ -151,12 +159,9 @@ export default function Noticias() {
                     {noticia.fecha}
                   </p>
 
-                  <button
-                    onClick={() => navigate(`/noticias/${noticia.id}`)}
-                    className="w-full border border-gray-300 rounded-lg py-2 text-sm hover:bg-gray-50 transition"
-                  >
+                  <span className="block w-full border border-gray-300 rounded-lg py-2 text-sm text-center text-gray-500 cursor-default select-none">
                     Leer más
-                  </button>
+                  </span>
                 </div>
               </article>
             ))}
@@ -176,12 +181,17 @@ export default function Noticias() {
             <input
               type="email"
               placeholder="tu@email.com"
-              className="flex-1 px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 outline-none focus:ring-2 focus:ring-white/40"
+              disabled
+              className="flex-1 px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 outline-none opacity-60 cursor-not-allowed"
             />
-            <button className="bg-white text-[#0F4C81] px-6 py-3 rounded-xl font-semibold hover:bg-blue-50 transition">
+            <button disabled className="bg-white text-[#0F4C81] px-6 py-3 rounded-xl font-semibold opacity-60 cursor-not-allowed">
               Suscribirme
             </button>
           </div>
+
+          <p className="mt-4 text-xs text-blue-200/80">
+            El boletín es parte de la misma sección de concepto y no está activo en esta demo.
+          </p>
         </section>
 
       </main>
