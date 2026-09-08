@@ -10,13 +10,15 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError('');
+    setIsSubmitting(true);
 
     try {
       const res = await client.post('/auth/login', {
@@ -30,6 +32,8 @@ export default function Login() {
       navigate('/directorio');
     } catch (err: any) {
       setError(err.response?.data?.message || 'Error al iniciar sesión');
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
@@ -60,27 +64,33 @@ export default function Login() {
               </div>
             )}
 
-            <label className='block text-xs text-gray-500 mb-1'>Correo Electrónico</label>
-            <input
-            type='email'
-            placeholder='usuario@dominio.com'
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            className='w-full px-3 py-2 text-sm border border-gray-200 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400'/>
-
-            <div className='mt-3 mb-1'>
-              <label className='text-xs text-gray-500'>Contraseña</label>
-            </div>
+            <form onSubmit={handleSubmit}>
+              <label htmlFor='login-email' className='block text-xs text-gray-500 mb-1'>Correo Electrónico</label>
               <input
-              type='password'
-              placeholder='contraseña'
-              value={password}
-              onChange={e => setPassword(e.target.value)}
+              id='login-email'
+              type='email'
+              placeholder='usuario@dominio.com'
+              autoComplete='email'
+              value={email}
+              onChange={e => setEmail(e.target.value)}
               className='w-full px-3 py-2 text-sm border border-gray-200 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400'/>
 
-              <button onClick={handleSubmit} className='w-full mt-4 bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition-colors'>
-                Iniciar Sesión
-              </button>
+              <div className='mt-3 mb-1'>
+                <label htmlFor='login-password' className='text-xs text-gray-500'>Contraseña</label>
+              </div>
+                <input
+                id='login-password'
+                type='password'
+                placeholder='contraseña'
+                autoComplete='current-password'
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                className='w-full px-3 py-2 text-sm border border-gray-200 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400'/>
+
+                <button type='submit' disabled={isSubmitting} className='w-full mt-4 bg-gray-900 text-white py-2.5 rounded-lg text-sm font-medium hover:bg-gray-800 transition-colors disabled:opacity-60 disabled:cursor-not-allowed'>
+                  {isSubmitting ? 'Iniciando sesión...' : 'Iniciar Sesión'}
+                </button>
+            </form>
 
               <div className='mt-3 bg-gray-50 border border-gray-200 rounded-lg p-3'>
                 <p className='text-xs font-medium text-gray-500 mb-2'>Credenciales de demostración</p>

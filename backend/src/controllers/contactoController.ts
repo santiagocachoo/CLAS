@@ -138,7 +138,7 @@ export const getContactosByEmpresa = async (req:Request, res:Response) => {
 
                 {
                     model: Empresa,
-                    attributes: ["nombre_empresa"]
+                    attributes: ["nombre_comercial"]
                 }
             ]
         });
@@ -171,7 +171,7 @@ export const getContactobyId = async (req:Request, res:Response) => {
                 },
                 {
                     model: Empresa,
-                    attributes: ["nombre_empresa"]
+                    attributes: ["nombre_comercial"]
                 }
             ]
         });

@@ -23,7 +23,7 @@ import heroTeam from '../assets/img/hero-team.svg';
 
 export default function Home() {
   const stats = [
-    { label: "Empresas Miembro", value: "150+" },
+    { label: "Empresas Miembro", value: "22" },
     { label: "Empleos Generados", value: "12k+" },
     { label: "Años de Experiencia", value: "25+" },
     { label: "Valor Agregado Anual", value: "$2.5B" },

@@ -9,9 +9,11 @@ export const StatCounter = ({ value }: Props) => {
   const [isVisible, setIsVisible] = useState(false);
   const domRef = useRef<HTMLDivElement>(null);
 
-  // Extraemos solo el número de la cadena (ej: de "150+" obtenemos 150)
-  const targetNumber = parseInt(value.replace(/\D/g, ''));
-  const suffix = value.replace(/[0-9]/g, '');
+  // Separamos prefijo (ej: "$"), número (ej: "2.5") y sufijo (ej: "B") para no perder decimales
+  const match = value.match(/^(\D*)([\d.]+)(.*)$/);
+  const [, prefix, numberPart, suffix] = match ?? ['', '', value, ''];
+  const targetNumber = parseFloat(numberPart) || 0;
+  const decimals = numberPart.includes('.') ? numberPart.split('.')[1].length : 0;
 
   useEffect(() => {
     // 1. Detectar cuando el elemento entra en pantalla
@@ -50,7 +52,7 @@ export const StatCounter = ({ value }: Props) => {
 
   return (
     <div ref={domRef} className="text-5xl font-black text-[rgb(68,111,182)] mb-2 tracking-tighter drop-shadow-lg">
-      {Math.floor(current)}{suffix}
+      {prefix}{current.toFixed(decimals)}{suffix}
     </div>
   );
 };

@@ -1,11 +1,12 @@
 import type { DirectoryCompany, DirectoryFilters } from '../types/directory';
 import { createCategoryId } from './createCategoryId';
+import { normalizeForSearch } from './normalizeForSearch';
 
 export function filterCompanies(
   companies: DirectoryCompany[],
   filters: DirectoryFilters,
 ): DirectoryCompany[] {
-  const normalizedSearch = filters.search.trim().toLowerCase();
+  const normalizedSearch = normalizeForSearch(filters.search.trim());
   const hasSearch = normalizedSearch.length > 0;
   const hasCategoryFilter = filters.categoryIds.length > 0;
   const hasTierFilter = filters.tierIds.length > 0;
@@ -49,7 +50,7 @@ export function filterCompanies(
     ];
 
     return searchableValues.some((value) =>
-      value.toLowerCase().includes(normalizedSearch),
+      normalizeForSearch(value).includes(normalizedSearch),
     );
   });
 }

@@ -44,10 +44,10 @@ export default function Footer() {
           <div>
             <h4 className="font-heading font-semibold text-sm uppercase tracking-widest text-white/40 mb-5">Navegación</h4>
             <ul className="space-y-3">
-              <li><a href="/" className="text-sm text-white/60 hover:text-white transition-colors no-underline">Inicio</a></li>
-              <li><a href="/directorio" className="text-sm text-white/60 hover:text-white transition-colors no-underline">Directorio</a></li>
-              <li><a href="/noticias" className="text-sm text-white/60 hover:text-white transition-colors no-underline">Noticias</a></li>
-              <li><a href="/login" className="text-sm text-white/60 hover:text-white transition-colors no-underline">Iniciar sesión</a></li>
+              <li><Link to="/" className="text-sm text-white/60 hover:text-white transition-colors no-underline">Inicio</Link></li>
+              <li><Link to="/directorio" className="text-sm text-white/60 hover:text-white transition-colors no-underline">Directorio</Link></li>
+              <li><Link to="/noticias" className="text-sm text-white/60 hover:text-white transition-colors no-underline">Noticias</Link></li>
+              <li><Link to="/login" className="text-sm text-white/60 hover:text-white transition-colors no-underline">Iniciar sesión</Link></li>
             </ul>
           </div>
 
