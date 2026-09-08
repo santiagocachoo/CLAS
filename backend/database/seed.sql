@@ -481,6 +481,11 @@ INSERT INTO empresas (
     TRUE
 );
 
+-- The schema defaults `logo` to 'default_logo.png', which points at an uploaded file that
+-- doesn't exist on this deploy. Explicitly clear it so the app treats these companies as
+-- having no logo instead of resolving a broken URL.
+UPDATE empresas SET logo = NULL;
+
 
 
 -- =========================

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import type { DirectoryCompany } from '../types/directory';
@@ -20,6 +21,8 @@ function getCompanyInitials(name: string) {
 
 export default function CompanyCard({ company }: CompanyCardProps) {
   const companyInitials = getCompanyInitials(company.name);
+  const [logoFailed, setLogoFailed] = useState(false);
+  const showLogo = Boolean(company.logoUrl) && !logoFailed;
   const visibleSpecialties = company.specialties.slice(0, 4);
   const hiddenSpecialtiesCount = company.specialties.length - visibleSpecialties.length;
 
@@ -31,34 +34,18 @@ export default function CompanyCard({ company }: CompanyCardProps) {
     >
       <div className="!flex !min-h-[80px] !items-center !justify-center">
         <div className="!relative !flex !h-[54px] !w-[140px] !items-center !justify-center !overflow-hidden !rounded-[14px] !bg-white">
-          {company.logoUrl ? (
+          {showLogo ? (
             <img
-              src={company.logoUrl}
+              src={company.logoUrl!}
               alt={`Logo de ${company.name}`}
               className="!h-full !w-full !object-contain"
-              onError={(event) => {
-                const fallback = event.currentTarget.nextElementSibling as HTMLElement | null;
-
-                event.currentTarget.style.display = 'none';
-
-                if (fallback) {
-                  fallback.style.display = 'flex';
-                }
-              }}
+              onError={() => setLogoFailed(true)}
             />
-          ) : null}
-
-          <span
-            className="!hidden !h-full !w-full !items-center !justify-center !text-[22px] !font-bold !tracking-[0.08em] !text-[#12284b]"
-          >
-            {companyInitials}
-          </span>
-
-          {!company.logoUrl ? (
-            <span className="!absolute !inset-0 !flex !items-center !justify-center !text-[22px] !font-bold !tracking-[0.08em] !text-[#12284b]">
+          ) : (
+            <span className="!flex !h-[54px] !w-[54px] !items-center !justify-center !rounded-full !border !border-[#dbe7f7] !bg-gradient-to-br !from-[#eaf2fc] !to-[#dbe7f7] !text-[18px] !font-bold !tracking-[0.06em] !text-[#12284b]">
               {companyInitials}
             </span>
-          ) : null}
+          )}
         </div>
       </div>
 

@@ -107,6 +107,7 @@ export default function EmpresaDetalle() {
   const [company, setCompany] = useState<DirectoryCompany | undefined>();
   const [isLoadingCompany, setIsLoadingCompany] = useState(true);
   const [companyError, setCompanyError] = useState('');
+  const [logoFailed, setLogoFailed] = useState(false);
 
   useEffect(() => {
     let isMounted = true;
@@ -232,6 +233,7 @@ export default function EmpresaDetalle() {
 
   const companyInitials = getCompanyInitials(company.name);
   const displayName = company.detail.displayName ?? company.name;
+  const showLogo = Boolean(company.logoUrl) && !logoFailed;
 
   return (
     <>
@@ -284,32 +286,18 @@ export default function EmpresaDetalle() {
 
               <div className="!flex !justify-start lg:!justify-end">
                 <div className="!relative !flex !h-[150px] !w-[260px] !items-center !justify-center !overflow-hidden !rounded-[34px] !border !border-[#e5edf7] !bg-white !p-6 !shadow-[0_18px_55px_rgba(15,23,42,0.08)]">
-                  {company.logoUrl ? (
+                  {showLogo ? (
                     <img
-                      src={company.logoUrl}
+                      src={company.logoUrl!}
                       alt={`Logo de ${company.name}`}
                       className="!h-full !w-full !object-contain !p-6"
-                      onError={(event) => {
-                        const fallback = event.currentTarget.nextElementSibling as HTMLElement | null;
-
-                        event.currentTarget.style.display = 'none';
-
-                        if (fallback) {
-                          fallback.style.display = 'flex';
-                        }
-                      }}
+                      onError={() => setLogoFailed(true)}
                     />
-                  ) : null}
-
-                  <span className="!hidden !h-full !w-full !items-center !justify-center !text-[42px] !font-bold !tracking-[0.08em] !text-[#12284b]">
-                    {companyInitials}
-                  </span>
-
-                  {!company.logoUrl ? (
-                    <span className="!absolute !inset-0 !flex !items-center !justify-center !text-[42px] !font-bold !tracking-[0.08em] !text-[#12284b]">
+                  ) : (
+                    <span className="!flex !h-[96px] !w-[96px] !items-center !justify-center !rounded-full !border !border-[#dbe7f7] !bg-gradient-to-br !from-[#eaf2fc] !to-[#dbe7f7] !text-[32px] !font-bold !tracking-[0.06em] !text-[#12284b]">
                       {companyInitials}
                     </span>
-                  ) : null}
+                  )}
                 </div>
               </div>
             </div>

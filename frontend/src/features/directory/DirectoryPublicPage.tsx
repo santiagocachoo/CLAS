@@ -204,7 +204,7 @@ export default function DirectoryPublicPage() {
             DIRECTORIO DEMO
           </span>
 
-          <h1 className="mt-5.5! max-w-162.5 text-[clamp(72px,7vw,88px)]! font-bold leading-[0.92] tracking-tighter text-[#12284b]">
+          <h1 className="mt-5.5! max-w-162.5 text-[clamp(40px,10vw,88px)]! font-bold leading-[0.92] tracking-tighter text-[#12284b]">
             Directorio de
             <br />
             Miembros

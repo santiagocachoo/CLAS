@@ -21,7 +21,7 @@ const deleteFile = (file?: Express.Multer.File) => {
 };
 
 const getLogoUrl = (req: Request, logo?: string | null) => {
-    if (!logo) {
+    if (!logo || logo === "default_logo.png") {
         return null;
     }
 
